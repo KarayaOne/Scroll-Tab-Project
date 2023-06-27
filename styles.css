@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+    z-index: 1000;
+}
+.nav-header.scroll {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: .4s;
+}
+  
+.nav-header .logo {
+    width: 40px;
+    height: auto;
+}
+.nav-header .nav-toggle {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-size:1.4rem;
+    transition: .2s;
+}
+.nav-header .nav-toggle:hover {
+    color:blue;
+}
+.links-container {
+    margin-top: 3.2rem;
+    position:fixed;
+    z-index: 1000;
+    width: 100%;
+    padding: 1rem;
+    background-color: whitesmoke;
+    box-shadow: 0 0 3px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem 0rem 1rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s;
+}
+.links-container.active {
+    max-height: 100%;
+    transition: max-height 0.3s;
+}
+.links-container ul {
+    list-style: none;
+    padding: .5rem .5rem 1rem .5rem;
+}
+.links-container li {
+    padding: .5rem .5rem 0 .5rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+.links-container li:hover {
+    transform: scale(1.03);
+}
+
+.links-container a {
+    text-decoration: none;
+    color: black;
+    transition: .2s;
+}
+.links-container a:hover{
+    color: blue;
+}
+.home {
+    position:relative;
+    height: 100vh;
+    box-shadow: 0 0 5px;
+}
+.home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(84, 169, 214, 0.316), rgba(84, 169, 214, 0.316)), url(./img/hero-bcg.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+  }
+.banner {
+    height: 100%;
+    position:relative;
+    z-index: 1;
+}
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container h1 {
+    text-shadow: 0 0 2px;
+    color: white;
+}
+.container p {
+    padding: 10px;
+    font-size: .8rem;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 2px;
+    margin-bottom: 2rem;
+}
+.btn-white {
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 1rem;
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: .3s;
+}
+.btn-white:hover {
+    color: blue;
+    background-color: whitesmoke;
+    border: 2px solid blue;
+}
+
+.section {
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    height: 600px;
+}
+.section span {
+    color: blue;
+}
+footer {
+    background-color: lightgray;
+    padding: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    width:100%;
+}
+footer span {
+    color: blue;
+}
+.top-link {
+    position: fixed;
+    bottom: 7em;
+    right: 2em;
+    color: black;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    padding: 5px 10px 5px 10px;
+    opacity: 0;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    transition: 0.2s;
+  }
+  .top-link:hover {
+    color: blue;
+    border: 2px solid blue;
+  }
+  
+  .top-link.show {
+    opacity: 1;
+  }
+
+
+/* Media query for larger screens */
+@media screen and (min-width: 800px) {
+    .nav-center {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .nav-header .nav-toggle {
+      display: none;
+    }
+    .nav-header .logo {
+        margin-left: 3rem;
+    }
+  
+    .links-container {
+      display: flex;
+      align-items: center;
+      overflow: visible;
+      left: 35%;
+      margin: 0;
+    }
+  
+    .links-container ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+    }
+  
+    .links-container li {
+        padding: 1rem;
+        border: none;
+    }
+  
+    .links-container a {
+      text-decoration: none;
+      color: black;
+      transition: .2s;
+    }
+  
+    .links-container a:hover {
+      color: blue;
+    }
+    .banner {
+        width: 100%;
+    }
+    .container {
+        padding:4rem;
+    }
+    .container p {
+        margin-top:2rem;
+    }
+    .container .btn-white {
+        margin-top: 3rem;
+    }
+  }
+  
+  

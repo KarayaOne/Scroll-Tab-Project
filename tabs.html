@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tabs</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        * {
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;           
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .title {
+            text-align: center;
+            padding: 2rem;
+        }
+        .title p {
+            padding: 1rem;
+        }
+        .about-center {
+            display: flex;
+            justify-content: flex-start;
+            padding: 1rem;
+        }
+        .about-img {
+            border: 2px solid goldenrod;
+            box-shadow: 0 0 5px;
+            border-radius: 10px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-container {
+            padding: 0;
+            font-size: 0;
+            border-radius: .6rem;
+            width: fit-content;
+            overflow: hidden;
+        }
+        .btn-container button {
+            text-align: center;
+            border: none;
+            padding: 1rem;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: .1rem;
+            transition: .3s;
+            margin: 0;
+            font-size: initial;
+        }
+        .btn-container button:hover {
+            background-color: white;
+        }
+        .about-content {
+            padding: 1rem;
+        }
+        .content h4 {
+            padding-bottom: 1rem;
+        }
+        .content p {
+            padding: .2rem;
+        }
+        /* hide content */
+        .content {
+        display: none;
+        transition: opacity 0.3s;
+        }
+        .tab-btn.active {
+        background: white;
+        }
+        .content.active {
+        display: block;
+        opacity:1;
+        }
+
+        @media (max-width: 768px) {
+            .about-center {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+    </style>
+    <body>
+
+        <div class="container">
+            <section>
+                <div class="title">
+                    <h1>ABOUT SECTION</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt delectus totam fugiat earum quod! Eum iure asperiores quos.</p>
+                </div>
+            </section>
+    
+            <div class="about-center section-center">
+                <article class="about-img">
+                    <img src="./img/hero-bcg.jpeg" alt="about-img">
+                </article>
+                <article class="about">
+                    <!--btn container-->
+                    <div class="btn-container">
+                        <button class="tab-btn active" data-id="history">History</button>
+                        <button class="tab-btn" data-id="vision">Vision</button>
+                        <button class="tab-btn" data-id="goals">Goals</button>    
+                    </div>
+    
+                    <!--about content--> 
+                    <article class="about-content">
+                        <!--single item-->
+                        <div class="content active" id="history">
+                            <h4>History</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim blanditiis eligendi culpa earum unde dolorem. Ratione provident labore quaerat, totam tenetur corporis, eligendi nulla adipisci, perspiciatis repudiandae id nobis eaque?</p>
+                        </div>
+                        <!--end of single item-->
+        
+                        <!--single item-->
+                        <div class="content" id="vision">
+                            <h4>Vision</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim blanditiis eligendi culpa earum unde dolorem. Ratione provident labore quaerat, totam tenetur corporis, eligendi nulla adipisci, perspiciatis repudiandae id nobis eaque?</p>
+                        </div>
+                        <!--end of single item-->
+        
+                        <!--single item-->
+                        <div class="content" id="goals">
+                            <h4>Goals</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim blanditiis eligendi culpa earum unde dolorem. Ratione provident labore quaerat, totam tenetur corporis, eligendi nulla adipisci, perspiciatis repudiandae id nobis eaque?</p>
+                        </div>
+                        <!--end of single item-->
+                    </article>
+                </article>
+            </div>
+    
+        </div>
+        
+        <script>
+            //variables
+            const buttons = document.querySelectorAll('.btn-container button');
+
+            function handleClick(event) {
+                const buttonId = event.target.getAttribute('data-id');
+                console.log(buttonId + " clicked");
+
+                buttons.forEach(btn => btn.classList.remove('active'));
+
+                const contents = document.querySelectorAll('.about-content .content');
+                contents.forEach(cnt => cnt.classList.remove('active'));
+
+                event.target.classList.add('active');
+
+                const content = document.getElementById(buttonId);
+                content.classList.add('active');
+            }
+            buttons.forEach(function(button){
+                button.addEventListener('click', handleClick);
+            });
+        </script>
+    </body>
+</html>
