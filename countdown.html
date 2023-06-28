@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Countdown</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .container .heading {
+            text-align: center;
+            padding: 1rem;
+        }
+        .img-container {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+        }
+        .giveaway-info {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .giveaway-time {
+            padding: 1rem;
+            color: navy;
+        }
+        .giveaway-info h3 {
+            margin-top: 1rem;
+        }
+        .giveaway-info p {
+            font-size: .9rem;
+            color: rgb(87, 85, 85);
+        }
+
+        .deadline {
+            padding: 1rem;
+            width: 30%;
+            margin: 0 auto;
+        }
+
+        .deadline-format {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .deadline-format .cd {
+            background: navy;
+            border: 2px solid darkolivegreen;
+            border-radius: 1rem;
+            box-shadow: 0 0 5px;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            text-transform:capitalize;
+            text-align: center;
+        }
+        .deadline-format .cd span {
+            margin-top: 1rem;
+        }
+    </style>
+    <body>
+
+        <div class="container">
+            <h1 class="heading">TRIP GIVEAWAY</h1>
+            <div class="img-container">
+                <img src="/img/hero-bcg.jpeg" alt="img">
+            </div>
+            <div class="giveaway-info">
+                <h3>WIN A TRIP TO NORTH PAKISTAN</h3>
+                <h4 class="giveaway-time">
+                    Trouble loading content...
+                </h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quo corporis perferendis voluptate ratione doloribus, molestias accusantium cumque sed odio asperiores, quidem temporibus, voluptatibus quam dicta expedita qui id? Fuga.</p>
+            </div>
+
+            <div class="deadline">
+                <div class="deadline-format">
+
+                    <!--days-->
+                    <div class="cd">
+                        <h1 class="days">22</h1>
+                        <span>days</span>
+                    </div>
+                    <!--end of item-->
+
+                    <!--hours-->
+                    <div class="cd">
+                        <h1 class="hours">22</h1>
+                         <span>hours</span>
+                     </div>
+                        <!--end of item-->
+
+                     <!--mins-->
+                    <div class="cd">
+                        <h1 class="mins">22</h1>
+                        <span>mins</span>
+                    </div>
+                    <!--end of item-->
+
+                     <!--sec-->
+                    <div class="cd">
+                        <h1 class="secs">22</h1>
+                        <span>secs</span>
+                    </div>
+                    <!--end of item-->
+
+                </div>
+
+            </div>
+        </div>
+
+        
+        <script>
+            const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            const weekdays = ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+            //Variables required
+            const giveawayTime = document.querySelector('.giveaway-time');
+            const deadline = document.querySelector('.deadline');
+            const items = document.querySelectorAll('.deadline-format h1');
+
+            let futureDate = new Date(2023,8,27,11,30,0);
+
+            const year = futureDate.getFullYear();
+            const month = months[futureDate.getMonth()];
+            const day = weekdays[futureDate.getDay()];
+            const date = futureDate.getDate();
+
+            const hours = futureDate.getHours();
+            const minutes = futureDate.getMinutes();
+
+            giveawayTime.textContent=`Giveaway ends on ${day}, ${date} ${month} ${year} ${hours}:${minutes}am`;
+
+
+            //future time in ms
+            const futureTime = futureDate.getTime();
+
+            function getRemainingTime() {
+                const today = new Date().getTime();
+                const time = futureTime - today;
+
+                //1s = 1000ms
+                //1m = 60s and so on..
+
+                //values of ms in one day
+                const oneDay = 24*60*60*1000;
+                const oneHour = 60*60*1000;
+                const oneMinute = 60*1000;
+
+                //calculating remaining time
+                let days = Math.floor(time/oneDay);
+                let hours = Math.floor((time % oneDay)/oneHour);
+                let minutes = Math.floor((time % oneHour)/oneMinute);
+                let seconds = Math.floor((time % oneMinute)/1000);
+
+                function format(item) {
+                    if (item<10) {
+                        return item=`0${item}`
+                    }
+                    return item;
+                }
+                //set value
+                const values = [days, hours, minutes, seconds];
+
+                items.forEach(function(item,index) {
+                    item.innerHTML = format(values[index]);
+                });
+                if (time < 0) {
+                    clearInterval(countdowns);
+                    deadline.innerHTML=`<h4 class = "expired">This giveaway has expired..</h4>`;
+                }
+            }
+
+            //Count Down
+            let countdowns = setInterval (getRemainingTime, 1000);
+            getRemainingTime();
+        </script>
+    </body>
+</html>
